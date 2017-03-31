@@ -4,7 +4,7 @@ import serial
 
 ser=serial.Serial('/dev/ttyACM0',9600)
 
-WORDS = ["FLASH"]
+WORDS = ["SWITCH", "LIGHT", "ON", "BRIGHTER"]
 
 def isValid(text):
   """
@@ -12,7 +12,15 @@ def isValid(text):
     Arguments:
     text -- user-input, typically transcribed speech
   """
-  return bool(re.search(r'\bflash\b', text, re.IGNORECASE))
+  switch = bool(re.search(r'\bswitch the light on\b', text, re.IGNORECASE))
+  brighter = bool(re.search(r'\bbrighter\b', text, re.IGNORECASE))
+
+  if switch:
+    return switch
+   elif brighter:
+	return brighter
+   else:
+	return False
 
 def handle(text, mic, profile):
   messages = ["Lights are switched on.",
