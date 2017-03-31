@@ -2,9 +2,10 @@ import random
 import re
 import serial
 
+PRIORITY=7
 ser=serial.Serial('/dev/ttyACM0',9600)
 
-WORDS = ["SWITCH", "LIGHT", "ON", "BRIGHTER"]
+WORDS = ["SWITCH", "LIGHT", "ON", "BRIGHTER", "TOO", "DIM" ,"DARK" ]
 
 def isValid(text):
   """
@@ -14,13 +15,25 @@ def isValid(text):
   """
   switch = bool(re.search(r'\bswitch the light on\b', text, re.IGNORECASE))
   brighter = bool(re.search(r'\bbrighter\b', text, re.IGNORECASE))
+  switch2 = bool(re.search(r'\bswitch on the light\b', text, re.IGNORECASE))
+  dim = bool(re.search(r'\btoo dim\b', text, re.IGNORECASE))
+  dark = bool(re.search(r'\bdark\b', text, re.IGNORECASE))
+  light = bool(re.search(r'\blight\b', text, re.IGNORECASE))
 
   if switch:
     return switch
-   elif brighter:
-	return brighter
-   else:
-	return False
+  elif brighter:
+	 return brighter
+  elif switch2:
+    return switch2
+  elif dim:
+    return dim
+  elif dark:
+    return dark
+  elif light:
+    return light
+  else:
+	 return False
 
 def handle(text, mic, profile):
   messages = ["Lights are switched on.",
