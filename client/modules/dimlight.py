@@ -18,13 +18,13 @@ def isValid(text):
   toobright = bool(re.search(r'\btoo bright\b', text, re.IGNORECASE))
 
   if romatic:
-	return romatic
+	  return romatic
   elif dim:
-	return dim
+	  return dim
   elif toobright:
   	return toobright
   else:
-	return False
+	  return False
 
 def handle(text, mic, profile):
   messages = ["Is this better?",
