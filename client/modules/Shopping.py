@@ -32,17 +32,18 @@ def isValid(text):
 
 asin = ""
 def scrapeAmazon(searchString):
-    for item in api.item_search('Electronics', Keywords=searchString):
+    for item in api.item_search('All', Keywords=searchString):
         return item.ASIN
 
 def handle(text, mic, profile):
   messages = ["What would you like to buy?",
-                "Anything in particular?"]
+                "Anything specific?"]
   message = random.choice(messages)
   mic.say(message)
-  blah = mic.activeListen()
-  mic.say("Searching for" + blah + "on Amazon.")
-  product = ReadAsin(scrapeAmazon(blah))
+  goods = mic.activeListen()
+  mic.say("Searching for" + goods + "on Amazon.")
+  product = ReadAsin(scrapeAmazon(goods))
   name = product["NAME"]
   price = product["SALE_PRICE"]
+
   mic.say("WE found" + name + ". costing " + price + ".")
