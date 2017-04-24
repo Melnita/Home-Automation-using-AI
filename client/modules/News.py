@@ -9,7 +9,7 @@ WORDS = ["NEWS", "YES", "NO", "FIRST", "SECOND", "THIRD"]
 PRIORITY = 3
 
 URL = 'http://news.ycombinator.com'
-
+#URL = 'timesofindia.indiatimes.com/'
 
 class Article:
 
@@ -44,7 +44,7 @@ def handle(text, mic, profile):
         profile -- contains information related to the user (e.g., phone
                    number)
     """
-    mic.say("Pulling up the news")
+    mic.say("Pulling up the news.")
     articles = getTopArticles(maxResults=3)
     titles = [" ".join(x.title.split(" - ")[:-1]) for x in articles]
     all_titles = "... ".join(str(idx + 1) + ")" +
@@ -64,7 +64,7 @@ def handle(text, mic, profile):
         send_all = not chosen_articles and app_utils.isPositive(text)
 
         if send_all or chosen_articles:
-            mic.say("Sure, just give me a moment")
+            mic.say("Sure, just give me a moment.")
 
             if profile['prefers_email']:
                 body = "<ul>"
@@ -108,7 +108,7 @@ def handle(text, mic, profile):
 
         else:
 
-            mic.say("OK I will not send any articles")
+            mic.say("OK I will not send any articles.")
 
     if 'phone_number' in profile:
         mic.say("Here are the current top headlines. " + all_titles +
