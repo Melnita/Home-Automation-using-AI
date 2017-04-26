@@ -18,7 +18,6 @@ def isValid(text):
   switch2 = bool(re.search(r'\bswitch on the light\b', text, re.IGNORECASE))
   dim = bool(re.search(r'\btoo dim\b', text, re.IGNORECASE))
   dark = bool(re.search(r'\bdark\b', text, re.IGNORECASE))
-  light = bool(re.search(r'\blight\b', text, re.IGNORECASE))
 
   if switch:
     return switch
@@ -30,8 +29,6 @@ def isValid(text):
     return dim
   elif dark:
     return dark
-  elif light:
-    return light
   else:
 	 return False
 
@@ -45,6 +42,5 @@ def handle(text, mic, profile):
   m2 = random.choice(m1)
  # m1 = 'Lights will be on'
   mic.say(m2)
-  ser.write('a')
+  ser.write('d')
   mic.say(message)
-  ser.close()

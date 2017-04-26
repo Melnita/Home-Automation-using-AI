@@ -12,13 +12,27 @@ def isValid(text):
     Arguments:
     text -- user-input, typically transcribed speech
   """
-  return bool(re.search(r'\blight off\b', text, re.IGNORECASE))
+  switch = bool(re.search(r'\bswitch the light off\b', text, re.IGNORECASE))
+  switch2 = bool(re.search(r'\bswitch off the light\b', text, re.IGNORECASE))
+  off = bool(re.search(r'\boff\b', text, re.IGNORECASE))
+
+  if switch:
+    return switch
+  elif switch2:
+    return switch2
+  elif off:
+    return off
+  else:
+   return False
 
 def handle(text, mic, profile):
+  messages = ["Lights are switched off.",
+                "Switching lights off."]
   m1 = ["Lights will be switched off.",
 	        "Be patient.",
 	          "Don't annoy me."]
+  message = random.choice(messages)
   m2 = random.choice(m1)
   mic.say(m2)
   ser.write('b')
-  ser.close()
+  mic.say(message)

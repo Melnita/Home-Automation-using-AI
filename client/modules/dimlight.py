@@ -32,4 +32,3 @@ def handle(text, mic, profile):
   message = random.choice(messages)
   ser.write('c')
   mic.say(message)
-  ser.close()
